@@ -3,6 +3,7 @@ const router = express.Router()
 const Author = require('../models/author')
 const Book = require('../models/book')
 const path = require('path')
+const fs = require('fs')
 const multer = require('multer')
 const uploadPath = path.join('public', Book.coverImageBasePath)
 const imageMimeTypes = ['image/jpeg', 'image/png', 'image/gif']
@@ -35,30 +36,12 @@ router.get('/', async (req, res) => {
       res.redirect('/')
     }
   })
-  
 
-router.post('/', upload.single('cover'), async(req, res) => {
-  console.log(req.file)
-  const fileName = req.file != null ? req.file.filename : null
-  console.log(fileName)
-  const book = new Book({
-      title: req.body.title,
-      author: req.body.author,
-      publishDate: new Date(req.body.publishDate),
-      pageCount: req.body.pageCount,
-      coverImageName: fileName,
-      description: req.body.description
+function removeBookCover(fileName) {
+  fs.unlink(path.join(uploadPath, fileName), err => {
+    if (err) console.error(err)
   })
-
-  try {
-    console.log(book.coverImageName)
-    const newBook = await book.save()
-    res.redirect('books')
-  } catch {
-    renderNewPage(res, book, true)
-  }  
-})
-
+}
 
 async function renderNewPage(res, book, hasError = false) {
   try {
@@ -78,6 +61,29 @@ router.get('/new', async (req, res) => {
    renderNewPage(res, new Book())
 })
 
+router.post('/', upload.single('cover'), async(req, res) => {
+  console.log(req.file)
+  const fileName = req.file != null ? req.file.filename : null
+  console.log(fileName)
+  const book = new Book({
+      title: req.body.title,
+      author: req.body.author,
+      publishDate: new Date(req.body.publishDate),
+      pageCount: req.body.pageCount,
+      coverImageName: fileName,
+      description: req.body.description
+  })
 
+  try {
+    //console.log(book.coverImageName)
+    const newBook = await book.save()
+    res.redirect('books')
+  } catch {
+    if(book.coverImageName != null) {
+      removeBookCover(book.coverImageName)
+    }
+    renderNewPage(res, book, true)
+  }  
+})
 
 module.exports = router
