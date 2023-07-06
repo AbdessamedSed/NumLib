@@ -14,9 +14,22 @@
     <% }) %>
     </select>
   </div>
-  <div>
-    <label>Publish Date</label>
-    <input type="date" name="publishDate"
+<div>
+  <label>Publish Date</label>
+  <input type="date" name="publishDate"
           value="<%= book.publishDate == null ? '' : book.publishDate.toISOString().split('T')[0] %>">
-  </div>
-  
+</div>
+<div>
+  <label>Page Count</label>
+  <input type="number" name="pageCount"
+           value="<%= book.pageCount %>">
+</div>
+<div>
+  <label>Cover</label>
+  <input type="file" name="cover">
+</div>
+<div>
+    <label>Description</label>
+    <input type="textarea" name="description"
+     value="<%=book.description%>">
+</div>
