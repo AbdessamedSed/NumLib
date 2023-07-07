@@ -1,5 +1,5 @@
 <h2>Search Book</h2>
-<form action="/authors" method="GET">
+<form action="/books" method="GET">
     <div>
         <label for="textInput">Title</label>
         <input id="textInput" type="text" name="title">
@@ -14,4 +14,8 @@
     </div>
     <input type="submit" value="Search">
 </form>
-
+<div>
+    <% books.forEach(book => { %>
+      <img height="150" width="100" src="<%= book.coverImagePath %>">
+    <% }) %>
+  </div>
