@@ -17,7 +17,6 @@ const upload = multer({
 
 router.get('/', async (req, res) => {
     let query = Book.find()
-    //console.log(req.query.title)
     if (req.query.title != null && req.query.title != '') {
       query = query.regex('title', new RegExp(req.query.title, 'i'))
     }
@@ -66,9 +65,9 @@ router.get('/new', async (req, res) => {
 })
 
 router.post('/', upload.single('cover'), async(req, res) => {
-  console.log(req.file)
+  //console.log(req.file)
   const fileName = req.file != null ? req.file.filename : null
-  console.log(fileName)
+  //console.log(fileName)
   const book = new Book({
       title: req.body.title,
       author: req.body.author,
