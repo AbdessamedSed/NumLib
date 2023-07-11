@@ -111,12 +111,45 @@ router.get('/:id/edit', async (req, res) => {
   }
 })
 
-router.put('/:id', (req, res) => {
+router.put('/:id', upload.single('cover'), async (req, res) => {
+  let book
+  const fileName = req.file != null ? req.file.filename : null
+  try {
+    book = await Book.findById(req.params.id)
+    book.title = req.body.title
+    book.author = req.body.author
+    book.publishDate = new Date(req.body.publishDate)
+    book.pageCount = req.body.pageCount
+    book.description = req.body.description
+    if (fileName != null) {
+      book.coverImageName = fileName
+    }
+    await book.save()
+    res.redirect(`/books/${book.id}`)
+  } catch(err) {
+      console.log(err)
+      if (book != null) {
+        res.send('Error !! ')
+      } else {
+          res.redirect('/')
+      }
+  }
 
 })
 
-router.delete('/:id/delete', (req, res) => {
-
+router.delete('/:id', async (req, res) => {
+  let book
+  try {
+    console.log(book.id)
+    await Book.deleteOne({_id: req.params.id})
+    res.redirect('/books')
+  } catch {
+    if(book == null) {
+      res.redirect('/')
+  } else {
+      res.redirect(`/books/${book.id}`)
+  }
+  }
 })
 
 
