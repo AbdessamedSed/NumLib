@@ -89,5 +89,35 @@ router.post('/', upload.single('cover'), async(req, res) => {
   }  
 })
 
+router.get('/:id',async (req, res) => {
+  try {
+    const book = await Book.findById(req.params.id).populate('author').exec()
+    res.render('books/show', {book: book})
+  } catch(err) {
+    res.redirect('/')
+  }
+})
+
+router.get('/:id/edit', async (req, res) => {
+  try {
+    const book = await Book.findById(req.params.id)
+    const authors = await Author.find({})
+    res.render('books/edit', {
+      book: book,
+      authors: authors
+    })
+  } catch (err) {
+    res.redirect('/')
+  }
+})
+
+router.put('/:id', (req, res) => {
+
+})
+
+router.delete('/:id/delete', (req, res) => {
+
+})
+
 
 module.exports = router
