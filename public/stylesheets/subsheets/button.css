@@ -1,0 +1,43 @@
+.btn {
+    border: 1px solid black;
+    border-radius: .7rem;
+    padding: .5rem 1rem;
+    font-size: .8rem;
+    font-family:'Times New Roman', Times, serif;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn-primary {
+    color: hsl(200, 100%, 20%);
+    background-color: hsl(20, 100%, 83%) ;
+}
+
+.btn-danger {
+    color: black ;
+    background-color:hsl(20, 100%, 83%) ;
+}
+
+.btn-primary:hover {
+    color: hsl(200, 100%, 10%);
+    background-color: hsl(20, 100%, 73%);
+}
+
+.btn-danger:hover {
+    color: black;
+    background-color: hsl(200, 100%, 73%);
+}
+
+.btn-row {
+    display: flex;
+    align-items: flex-start;
+}
+
+.btn-row > * {
+    margin-left: 1rem;
+}
+
+.btn-row > * :first-child {
+    margin-left: 0;
+}
