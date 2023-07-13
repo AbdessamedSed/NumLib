@@ -1,0 +1,36 @@
+.form-body {
+    display: flex;
+    flex-direction: column;
+    margin-left: 2rem;
+    /* flex-grow: 1;
+    flex-basis: 0; */
+    margin-bottom: 1rem;
+}
+
+.form-element {
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.form-element label {
+    width: 27%;
+}
+
+.form-element input, .form-element textarea, .form-element select {
+    width: 60%;
+    height: 1.5rem;
+    border-radius: .15rem;
+    border: 1px solid hsl(20, 100%, 83%);
+    background-color: hsl(200, 100%, 87%);
+    color: black;
+    font-size: 1rem;
+    font-weight: normal;
+    font-family: 'Gotham Rounded';
+    outline: none;
+}
+
+.form-element textarea {
+    height: 100%;
+    resize: none;
+}
+

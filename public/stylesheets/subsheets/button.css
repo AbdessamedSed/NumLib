@@ -2,7 +2,7 @@
     border: 1px solid black;
     border-radius: .7rem;
     padding: .5rem 1rem;
-    font-size: .8rem;
+    font-size: 1rem;
     font-family:'Times New Roman', Times, serif;
     cursor: pointer;
     text-decoration: none;
@@ -26,7 +26,7 @@
 
 .btn-danger:hover {
     color: black;
-    background-color: hsl(200, 100%, 73%);
+    background-color: hsl(20, 100%, 73%);
 }
 
 .btn-row {
@@ -40,4 +40,24 @@
 
 .btn-row > * :first-child {
     margin-left: 0;
+}
+
+.btns {
+    display: flex;
+    justify-content: center;
+}
+
+.btns a, .btns button {
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+.btn-search {
+    width: 5rem;
+    margin-left: 2rem;
+    border-radius: .2rem;
+    border-color: black;
+    background-color: hsl(20, 100%, 83%);
+    height: 1.7rem;
+    border: 1px solid hsl(20, 100%, 83%);
 }

@@ -1,20 +1,22 @@
 <h2 class="page-header">Search Book</h2>
 <form action="/books" method="GET">
-    <div>
+    <div class="form-element">
         <label for="textInput">Title</label>
         <input id="textInput" type="text" name="title">
     </div>
-    <div>
+    <div class="form-element">
         <label for="beforeIn">Published Before</label>
         <input id="beforeIn" type="date" name="publishedBefore">
     </div>
-    <div>
+    <div class="form-element">
         <label for="AfterIn">Published After</label>
         <input id="AfterIn" type="date" name="publishedAfter">
     </div>
-    <input type="submit" value="Search">
+    <input class="btn-search" type="submit" value="Search">
 </form>
-<div>
+<br>
+<br>
+<div class="books-show">
     <% books.forEach(book => { %>
       <img height="150" width="100" src="<%= book.coverImagePath %>">
       <div class="btn-row">
